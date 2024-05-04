@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FallingLines } from 'react-loader-spinner';
-import { Avatar, Box, Grid, capitalize } from '@mui/material';
+import { Avatar, Box, Button, Grid, capitalize } from '@mui/material';
 
 import { fetchJobs } from './functions';
 import { setJobs } from '../../redux/slice/jobs';
 import { Job, JobsState } from '../../types';
 import { CURRENCY } from './constants';
+import ColorButton from '../Shared/ColorButton';
 
 const Jobs = () => {
   const [loading, setLoading] = useState(true);
@@ -70,7 +71,23 @@ const Jobs = () => {
               </Box>
               <p className="short-text faded">{estimatedSalary}</p>
               <Box my="7px"></Box>
-              <h4>About Company:</h4>
+              <h3>About Company:</h3>
+              <p className="short-text extra-bold-text">About us</p>
+              <Box className="layer-box" height="150px" display="flex" flexDirection={'column'} alignItems={'center'}>
+                <Box height="150px" overflow="hidden">
+                  <p className="short-text">{job.jobDetailsFromCompany}</p>
+                </Box>
+                <Button disableTouchRipple className="layer text-btn">
+                  View job
+                </Button>
+              </Box>
+              <Box display="flex" flexDirection="column" gap="3px">
+                <p className="short-text faded">Minimum Experience</p>
+                <p className="short-text">{(job.minExp || 0) + ' years'}</p>
+              </Box>
+              <ColorButton className="apply-btn" variant="contained">
+                ⚡ Easy Apply
+              </ColorButton>
             </Grid>
           );
         })}
