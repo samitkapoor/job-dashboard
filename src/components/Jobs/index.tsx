@@ -1,20 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { FallingLines } from 'react-loader-spinner';
 
 import { fetchJobs } from './functions';
-import { useDispatch } from 'react-redux';
 import { setJobs } from '../../redux/slice/jobs';
+import { JobsState } from './types';
 
 const Jobs = () => {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
+  const state: JobsState = useSelector((state: { jobsSlice: JobsState }) => state.jobsSlice);
 
   useEffect(() => {
     (async () => {
       const jobs = await fetchJobs();
       dispatch(setJobs({ data: jobs.jdList }));
+      setLoading(false);
     })();
-  });
+  }, []);
 
-  return <div>Jobs</div>;
+  return loading ? (
+    <div>
+      <FallingLines color="#0c8ce9" width="50" />
+    </div>
+  ) : state.filteredJobs.length === 0 ? (
+    <div className="gapped-column">
+      <img src="icons/not-found.png" height="200px" />
+      <p className="bold-text">No Jobs available for this category at the moment</p>
+    </div>
+  ) : (
+    <div></div>
+  );
 };
 
 export default Jobs;

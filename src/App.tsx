@@ -3,7 +3,7 @@ import Jobs from './components/Jobs';
 
 const App = () => {
   return (
-    <div className="dashboard">
+    <div className="column">
       <Filters />
       <Jobs />
     </div>
