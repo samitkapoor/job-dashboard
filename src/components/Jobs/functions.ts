@@ -3,7 +3,7 @@ import axios from 'axios';
 import { JOBS_URL } from './constants';
 
 // * Fetch Jobs from API
-export const fetchJobs = async (offset = 0, limit = 10) => {
+export const fetchJobs = async (offset = 0, limit = 12) => {
   try {
     const body = JSON.stringify({
       limit,

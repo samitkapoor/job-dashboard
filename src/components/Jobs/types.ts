@@ -1,4 +1,4 @@
-export type JobsState = {
-  filteredJobs: Array<Object>;
-  jobs: Array<Object>;
+export type CURRENCY_CONVERSION = {
+  USD: string;
+  INR: string;
 };

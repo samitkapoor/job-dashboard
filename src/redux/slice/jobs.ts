@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { JobsState } from '../../components/Jobs/types';
+
+import { JobsState } from '../../types';
 
 const initialState: JobsState = {
   jobs: [],

@@ -1,5 +1,6 @@
 :root {
   --white: '#FFFFFF';
+  --gray: '#e6e6e6';
 }
 
 * {
@@ -29,4 +30,12 @@ body {
 
 .bold-text {
   font-weight: bold;
+}
+
+.short-text {
+  font-size: 12px;
+}
+
+.faded {
+  color: var(--gray);
 }
