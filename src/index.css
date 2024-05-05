@@ -4,6 +4,7 @@
   --white: #ffffff;
   --gray: #707070;
   --lightGray: #b3b3b3;
+  --extraLightGray: #d8d8d8;
   --blue: #736fe3;
   --teal: #55efc4;
 }
@@ -127,4 +128,16 @@ a {
   border-radius: 100%;
   background-color: var(--teal);
   filter: blur(1px);
+}
+
+.toast {
+  border-radius: 100px;
+  border: 1px solid var(--extraLightGray);
+  box-shadow: 0px 2px 6px var(--extraLightGray);
+  padding: 3px 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  margin-bottom: 10px;
 }

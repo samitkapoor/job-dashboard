@@ -4,7 +4,7 @@ import { Job } from '../../../types';
 import { CURRENCY } from '../constants';
 import ApplyButton from '../../Shared/ApplyButton';
 import UnlockReferralButton from '../../Shared/UnlockReferralButton';
-import PeopleDecor from './components/PeopleDecor';
+import PeopleDecor from './components/PeopleDecor/PeopleDecor';
 
 // * Each job card on the dashboard
 const JobCard = (props: { job: Job; refEle?: (ele: Element) => void }) => {
@@ -22,6 +22,8 @@ const JobCard = (props: { job: Job; refEle?: (ele: Element) => void }) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={4} display="flex" alignItems="center" justifyContent="center">
       <Box className="job-card-item" ref={refEle}>
+        {/* // * Posted 5 Days ago */}
+        <Box className="toast">⏳ Posted 5 days ago</Box>
         {/* // * Top most header of card, including Company logo, role, name, location */}
         <Box display="flex" width={'100%'} gap="3px" alignItems="start">
           <Avatar sx={{ bgcolor: 'transparent', marginTop: '4px' }} variant="square">
