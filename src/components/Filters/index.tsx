@@ -30,7 +30,7 @@ const Filters = () => {
   }, 200);
 
   return (
-    <Box mt="100px" display="flex" flexWrap="wrap" gap="10px" alignItems="center">
+    <Box mt="100px" mx="20px" display="flex" flexWrap="wrap" gap="10px" alignItems="center">
       {/* // * Select Roles Dropdown */}
       <Autocomplete
         multiple
