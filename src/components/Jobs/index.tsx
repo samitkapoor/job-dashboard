@@ -32,7 +32,7 @@ const Jobs = () => {
     </div>
   ) : (
     <Box>
-      <Grid container justifyContent={'center'} columns={{ xs: 4, sm: 8, md: 12 }} rowGap={5} columnGap={4}>
+      <Grid container rowGap="20px" width="1100px">
         {state.filteredJobs.map((job: Job) => (
           <JobCard key={job.jdUid} job={job} />
         ))}
