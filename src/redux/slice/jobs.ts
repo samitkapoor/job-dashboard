@@ -46,7 +46,7 @@ const jobsSlice = createSlice({
       let filteredJobs = state.jobs;
 
       for (let key of Object.keys(filters)) {
-        if (!filters[key]) continue;
+        if (!filters[key] || filters[key] === '') continue;
         if (key === companyNameId) {
           filteredJobs = filteredJobs.filter((job) => job.companyName.toLowerCase().includes(filters[key].toLowerCase()));
         } else if (key === minBasePayId) {
@@ -69,6 +69,7 @@ const jobsSlice = createSlice({
           });
         }
       }
+
       return { ...state, filteredJobs };
     },
     resetJobs: (state) => {

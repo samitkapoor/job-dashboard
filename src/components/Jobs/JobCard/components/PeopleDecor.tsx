@@ -6,8 +6,8 @@ import { peopleImageLinks } from './constants';
 const PeopleDecor = () => {
   return (
     <Box display="flex" gap="10px">
-      {peopleImageLinks.map((link) => (
-        <Box height="22px" width="22px" position="relative">
+      {peopleImageLinks.map((link, index) => (
+        <Box key={index} height="22px" width="22px" position="relative">
           <Avatar sx={{ height: '22px', width: '22px' }}>
             <img className="blur" src={link} height="22px" width="22px" />
           </Avatar>
