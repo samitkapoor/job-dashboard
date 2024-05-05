@@ -6,7 +6,8 @@ const initialState: FiltersState = {
   companyName: undefined,
   minBasePay: undefined,
   experience: undefined,
-  location: undefined
+  location: undefined,
+  roles: undefined
 };
 
 const filtersSlice = createSlice({
@@ -24,9 +25,12 @@ const filtersSlice = createSlice({
     },
     setLocation: (state, action) => {
       return { ...state, location: action.payload.data };
+    },
+    setRoles: (state, action) => {
+      return { ...state, roles: action.payload.data };
     }
   }
 });
 
-export const { setCompanyName, setMinBasePay, setExperience, setLocation } = filtersSlice.actions;
+export const { setCompanyName, setMinBasePay, setExperience, setLocation, setRoles } = filtersSlice.actions;
 export default filtersSlice.reducer;

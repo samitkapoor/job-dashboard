@@ -32,4 +32,5 @@ export type FiltersState = {
   minBasePay: number | undefined;
   experience: number | undefined;
   location: string | undefined;
+  roles: string | undefined;
 };

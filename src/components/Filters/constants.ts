@@ -3,6 +3,7 @@ export const companyNameId = 'companyName';
 export const minBasePayId = 'minBasePay';
 export const experienceId = 'experience';
 export const locationId = 'location';
+export const rolesId = 'roles';
 
 // * OPTIONS
 export const minBasePayOptions = () => {
@@ -19,3 +20,4 @@ export const getLocationOptions = [
   { label: 'Remote', value: 'remote' },
   { label: 'In-office', value: 'in-office' }
 ];
+export const getRolesOptions = ['Frontend', 'IOS', 'Android', 'Backend', 'Tech Lead'];

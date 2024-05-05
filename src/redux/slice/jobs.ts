@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { JobsState } from '../../types';
-import { companyNameId, experienceId, locationId, minBasePayId } from '../../components/Filters/constants';
+import { companyNameId, experienceId, locationId, minBasePayId, rolesId } from '../../components/Filters/constants';
 
 const initialState: JobsState = {
   jobs: [],
@@ -40,7 +40,6 @@ const jobsSlice = createSlice({
     // * Filters
     filter: (state, action) => {
       const { filters } = action.payload;
-      console.log(filters);
 
       let filteredJobs = state.jobs;
 
@@ -53,9 +52,18 @@ const jobsSlice = createSlice({
         } else if (key === experienceId) {
           filteredJobs = filteredJobs.filter((job) => job.minExp && job.minExp <= filters[key]);
         } else if (key === locationId) {
+          filteredJobs = filteredJobs.filter(
+            (job) => job.location && (filters[key] === 'remote' ? job.location === 'remote' : job.location !== 'remote')
+          );
+        } else if (key === rolesId) {
           filteredJobs = filteredJobs.filter((job) => {
-            console.log(job);
-            return job.location && (filters[key] === 'remote' ? job.location === 'remote' : job.location !== 'remote');
+            for (let i = 0; i < filters[key].length; i++) {
+              if (filters[key][i].toLowerCase() === job.jobRole) {
+                return true;
+              }
+            }
+
+            return false;
           });
         }
       }
