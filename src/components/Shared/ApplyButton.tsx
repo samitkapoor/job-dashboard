@@ -7,7 +7,9 @@ const ApplyButton = styled(Button)<ButtonProps>(() => ({
     backgroundColor: '#4fe2b9'
   },
   color: 'black',
-  width: '100%'
+  width: '100%',
+  textTransform: 'none',
+  borderRadius: '7px'
 }));
 
 export default ApplyButton;

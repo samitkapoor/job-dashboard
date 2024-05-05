@@ -9,7 +9,9 @@ const UnlockReferralButton = styled(Button)<ButtonProps>(() => ({
   },
   color: 'white',
   width: '100%',
-  boxShadow: 'none'
+  boxShadow: 'none',
+  textTransform: 'none',
+  borderRadius: '7px'
 }));
 
 export default UnlockReferralButton;
