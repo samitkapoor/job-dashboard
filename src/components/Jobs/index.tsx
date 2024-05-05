@@ -52,7 +52,7 @@ const Jobs = () => {
         if (!isNotFilter) {
           // * Filters are set, we need to filter the data
           dispatch(filter({ filters }));
-        } else if (state.offset > 12 && isNotFilter) {
+        } else if (state.offset > state.totalJobs && isNotFilter) {
           // * Reset state if the filters are not applied and offset is increased.
           const jobs = await fetchJobs();
           dispatch(setJobs({ data: jobs }));

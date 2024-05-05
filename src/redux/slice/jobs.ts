@@ -82,7 +82,7 @@ const jobsSlice = createSlice({
       // * If filters are removed and jobs length is greater than 100, then reset the state
       // * Data might be too much for redux to crash.
       else {
-        return { ...state, filteredJobs: [], offset: 24 };
+        return { ...state, filteredJobs: [], offset: state.totalJobs + 1 };
       }
     },
     resetJobs: (state) => {
