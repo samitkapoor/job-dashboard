@@ -22,7 +22,8 @@ const jobsSlice = createSlice({
         ...state,
         jobs: action.payload.data.jdList || [], // * Empty array handles the case when API throw an error and no jobs are fetched
         filteredJobs: action.payload.data.jdList || [],
-        totalJobs: action.payload.data.totalCount
+        totalJobs: action.payload.data.totalCount,
+        offset: 0
       };
     },
     filterJobs: (state, action) => {
@@ -45,8 +46,11 @@ const jobsSlice = createSlice({
 
       let filteredJobs = state.jobs;
 
+      let filtersApplied = false;
+
       for (let key of Object.keys(filters)) {
         if (!filters[key] || filters[key] === '') continue;
+        else filtersApplied = true;
         if (key === companyNameId) {
           filteredJobs = filteredJobs.filter((job) => job.companyName.toLowerCase().includes(filters[key].toLowerCase()));
         } else if (key === minBasePayId) {
@@ -70,13 +74,25 @@ const jobsSlice = createSlice({
         }
       }
 
-      return { ...state, filteredJobs };
+      // * If filters are applied show filtered data,
+      // * if filters are not applied and length of jobs fetched till now is less than 100 then show jobs
+      if (filtersApplied || filteredJobs.length < 100) {
+        return { ...state, filteredJobs };
+      }
+      // * If filters are removed and jobs length is greater than 100, then reset the state
+      // * Data might be too much for redux to crash.
+      else {
+        return { ...state, filteredJobs: [], offset: 24 };
+      }
     },
     resetJobs: (state) => {
       return { ...state, filteredJobs: state.jobs };
+    },
+    increaseOffset: (state) => {
+      return { ...state, offset: state.offset + 12 };
     }
   }
 });
 
-export const { setJobs, filterJobs, addMoreJobs, filter, resetJobs } = jobsSlice.actions;
+export const { setJobs, filterJobs, addMoreJobs, filter, resetJobs, increaseOffset } = jobsSlice.actions;
 export default jobsSlice.reducer;

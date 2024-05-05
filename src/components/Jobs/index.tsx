@@ -4,14 +4,13 @@ import { Oval } from 'react-loader-spinner';
 import { Box, Grid } from '@mui/material';
 
 import { fetchJobs } from './functions';
-import { addMoreJobs, filter, resetJobs, setJobs } from '../../redux/slice/jobs';
+import { addMoreJobs, filter, increaseOffset, resetJobs, setJobs } from '../../redux/slice/jobs';
 import { FiltersState, Job, JobsState, State } from '../../types';
 import JobCard from './JobCard';
 
 // * Job cards in Job Dashboard
 const Jobs = () => {
   const [loading, setLoading] = useState(true);
-  const [offset, setOffset] = useState(0);
   const dispatch = useDispatch();
   // * Jobs
   const state: JobsState = useSelector((state: State) => state.jobsSlice);
@@ -29,7 +28,7 @@ const Jobs = () => {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && state.hasMore) {
           // * On changing the offset, more data is fetched from the API
-          setOffset((prevOffset) => prevOffset + 12);
+          dispatch(increaseOffset());
         }
       });
       if (ele) observer.current.observe(ele);
@@ -40,18 +39,23 @@ const Jobs = () => {
   // * Load more data whenever the offset is changed
   useEffect(() => {
     (async () => {
-      if (offset != 0) {
+      if (state.offset != 0) {
         setLoading(true);
-        const jobs = await fetchJobs(offset);
+        const jobs = await fetchJobs(state.offset);
         dispatch(addMoreJobs({ data: jobs.jdList }));
         // * Are any filters set?
         const filterValues: Array<Boolean> = (Object.keys(filters) as Array<keyof FiltersState>).map(
           (key) => filters[key] === '' || filters[key] === undefined
         );
         const isNotFilter = filterValues.reduce((load, curr) => load === curr && load === true);
+        console.log({ isNotFilter, offset: state.offset });
         if (!isNotFilter) {
           // * Filters are set, we need to filter the data
           dispatch(filter({ filters }));
+        } else if (state.offset > 12 && isNotFilter) {
+          // * Reset state if the filters are not applied and offset is increased.
+          const jobs = await fetchJobs();
+          dispatch(setJobs({ data: jobs }));
         } else {
           // * Filters are not set yet
           dispatch(resetJobs());
@@ -65,7 +69,7 @@ const Jobs = () => {
         setLoading(false);
       }
     })();
-  }, [offset]);
+  }, [state.offset]);
 
   return loading && state.filteredJobs.length === 0 ? (
     // * Loading, and no jobs in our store, so just show a loading icon
