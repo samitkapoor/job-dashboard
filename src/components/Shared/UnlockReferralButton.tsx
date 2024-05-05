@@ -1,5 +1,6 @@
 import { Button, ButtonProps, styled } from '@mui/material';
 
+// * Unlock Referral Button
 const UnlockReferralButton = styled(Button)<ButtonProps>(() => ({
   backgroundColor: '#4943da',
   marginTop: '10px',

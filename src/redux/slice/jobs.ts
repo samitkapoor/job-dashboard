@@ -12,6 +12,7 @@ const initialState: JobsState = {
   limit: 10
 };
 
+// * All operations related to jobs including filters are stored in this slice
 const jobsSlice = createSlice({
   name: 'jobsSlice',
   initialState,

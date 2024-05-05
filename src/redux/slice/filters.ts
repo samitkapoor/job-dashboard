@@ -10,6 +10,7 @@ const initialState: FiltersState = {
   roles: undefined
 };
 
+// * This slice will store all the filters values
 const filtersSlice = createSlice({
   name: 'filtersSlice',
   initialState,

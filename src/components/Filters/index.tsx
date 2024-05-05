@@ -24,12 +24,14 @@ const Filters = () => {
   const [experienceOptions, setExperienceOptions] = useState(getExperienceOptions());
   const [locationOptions, setLocationOptions] = useState(getLocationOptions);
 
+  // * Execute the filter query after the user has stopped typing
   const debouncedOnChange = debounce((e) => {
     debouncedFilter(e, dispatch, filters);
   }, 200);
 
   return (
     <Box mt="100px" display="flex" flexWrap="wrap" gap="10px" alignItems="center">
+      {/* // * Select Roles Dropdown */}
       <Autocomplete
         multiple
         onChange={(event, value) => {
@@ -40,6 +42,7 @@ const Filters = () => {
         options={getRolesOptions}
         renderInput={(params) => <TextField {...params} variant="outlined" label="Roles" sx={{ minWidth: '100px' }}></TextField>}
       ></Autocomplete>
+      {/* // * Minimum Base Pay Salary */}
       <Autocomplete
         id={minBasePayId}
         options={basePayOptions}
@@ -60,6 +63,7 @@ const Filters = () => {
           ></TextField>
         )}
       ></Autocomplete>
+      {/* // * Experience Level */}
       <Autocomplete
         id={experienceId}
         options={experienceOptions}
@@ -80,6 +84,7 @@ const Filters = () => {
           ></TextField>
         )}
       ></Autocomplete>
+      {/* // * Location - Remote, In-office */}
       <Autocomplete
         id={locationId}
         options={locationOptions}
@@ -100,6 +105,7 @@ const Filters = () => {
           ></TextField>
         )}
       ></Autocomplete>
+      {/* // * Company Name */}
       <CustomTextField id={companyNameId} label="Search Company Name" variant="outlined" onChange={debouncedOnChange}></CustomTextField>
     </Box>
   );

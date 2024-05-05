@@ -1,5 +1,6 @@
 import { Button, ButtonProps, styled } from '@mui/material';
 
+// * Easy Apply Button
 const ApplyButton = styled(Button)<ButtonProps>(() => ({
   backgroundColor: '#55efc4',
   marginTop: 20,

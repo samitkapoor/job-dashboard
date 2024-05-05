@@ -20,6 +20,6 @@ export const fetchJobs = async (offset = 0, limit = 12) => {
 
     return data;
   } catch (err) {
-    throw err;
+    return [];
   }
 };

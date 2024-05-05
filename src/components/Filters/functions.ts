@@ -5,6 +5,7 @@ import { filter, resetJobs } from '../../redux/slice/jobs';
 import { setCompanyName, setMinBasePay, setExperience, setLocation, setRoles } from '../../redux/slice/filters';
 import { FiltersState } from '../../types';
 
+// * Set the filter value and filter the data accordingly
 const debouncedFilter = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, dispatch: Dispatch<UnknownAction>, filters: FiltersState) => {
   const { id, value } = e?.target;
 
