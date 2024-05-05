@@ -105,7 +105,17 @@ a {
   z-index: 2;
 }
 
-.apply-btn {
+.blur {
+  filter: blur(2px);
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.online-dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
   background-color: var(--teal);
-  width: 100%;
+  filter: blur(1px);
 }
