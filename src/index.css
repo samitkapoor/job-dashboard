@@ -17,7 +17,8 @@ body {
 }
 
 h3 {
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 a {
@@ -53,7 +54,7 @@ a {
 }
 
 .extra-bold-text {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .short-text {

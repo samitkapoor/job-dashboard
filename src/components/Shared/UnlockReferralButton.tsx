@@ -12,7 +12,7 @@ const UnlockReferralButton = styled(Button)<ButtonProps>(() => ({
   boxShadow: 'none',
   textTransform: 'none',
   borderRadius: '7px',
-  fontWeight: '400',
+  fontWeight: '300',
   fontFamily: 'lexend',
   fontSize: '14px'
 }));
