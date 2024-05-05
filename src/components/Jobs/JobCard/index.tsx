@@ -5,8 +5,8 @@ import { CURRENCY } from '../constants';
 import ApplyButton from '../../Shared/ApplyButton';
 import UnlockReferralButton from '../../Shared/UnlockReferralButton';
 
-const JobCard = (props: { job: Job }) => {
-  const { job } = props;
+const JobCard = (props: { job: Job; refEle?: (ele: Element) => void }) => {
+  const { job, refEle } = props;
 
   let estimatedSalary = 'Estimated Salary: ';
   if (job.minJdSalary && job.maxJdSalary) {
@@ -19,7 +19,7 @@ const JobCard = (props: { job: Job }) => {
 
   return (
     <Grid item xs={12} sm={4} md={4} lg={4} display="flex" alignItems="center" justifyContent="center">
-      <Box className="job-card-item">
+      <Box className="job-card-item" ref={refEle}>
         <Box display="flex" width={'100%'} gap="3px" alignItems="start">
           <Avatar sx={{ bgcolor: 'transparent', marginTop: '3px' }} variant="square">
             <img src={job.logoUrl} height="35px" />

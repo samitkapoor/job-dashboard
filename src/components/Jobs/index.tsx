@@ -1,22 +1,47 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FallingLines } from 'react-loader-spinner';
 import { Box, Grid } from '@mui/material';
 
 import { fetchJobs } from './functions';
-import { setJobs } from '../../redux/slice/jobs';
+import { addMoreJobs, setJobs } from '../../redux/slice/jobs';
 import { Job, JobsState } from '../../types';
 import JobCard from './JobCard';
 
 const Jobs = () => {
   const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
   const dispatch = useDispatch();
   const state: JobsState = useSelector((state: { jobsSlice: JobsState }) => state.jobsSlice);
+
+  const observer = useRef<IntersectionObserver | null>(null);
+  const lastJobEle = useCallback(
+    (ele: Element | null) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log('hello');
+          setOffset((prevOffset) => prevOffset + 12);
+        }
+      });
+      if (ele) observer.current.observe(ele);
+    },
+    [loading]
+  );
+
+  useEffect(() => {
+    if (offset != 0)
+      (async () => {
+        const jobs = await fetchJobs(offset);
+        dispatch(addMoreJobs({ data: jobs.jdList }));
+      })();
+  }, [offset]);
 
   useEffect(() => {
     (async () => {
       const jobs = await fetchJobs();
-      dispatch(setJobs({ data: jobs.jdList }));
+      dispatch(setJobs({ data: jobs }));
       setLoading(false);
     })();
   }, []);
@@ -33,9 +58,9 @@ const Jobs = () => {
   ) : (
     <Box>
       <Grid container rowGap="20px">
-        {state.filteredJobs.map((job: Job) => (
-          <JobCard key={job.jdUid} job={job} />
-        ))}
+        {state.filteredJobs.map((job: Job, index: number) =>
+          index + 1 === state.filteredJobs.length ? <JobCard refEle={lastJobEle} key={job.jdUid} job={job} /> : <JobCard key={job.jdUid} job={job} />
+        )}
       </Grid>
     </Box>
   );

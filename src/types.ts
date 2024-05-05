@@ -1,6 +1,10 @@
 export type JobsState = {
   filteredJobs: Array<Job>;
   jobs: Array<Job>;
+  totalJobs: number;
+  hasMore: Boolean;
+  offset: number;
+  limit: number;
 };
 
 export type Job = {
