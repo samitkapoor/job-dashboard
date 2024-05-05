@@ -24,6 +24,7 @@ const jobsSlice = createSlice({
     addMoreJobs: (state, action) => {
       const _state = { ...state, jobs: [...state.jobs, ...action.payload.data], filteredJobs: [...state.jobs, ...action.payload.data] };
       if (_state.jobs.length < state.totalJobs) {
+        _state.hasMore = true;
         return _state;
       } else {
         _state.hasMore = false;
