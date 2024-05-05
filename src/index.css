@@ -59,7 +59,7 @@ a {
 }
 
 .job-card-item {
-  max-width: 300px;
+  max-width: 275px;
   width: 100%;
   box-shadow: 0px 2px 10px var(--lightGray);
   display: flex;

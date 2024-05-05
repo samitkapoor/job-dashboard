@@ -3,7 +3,7 @@ import { Button, ButtonProps, styled } from '@mui/material';
 const UnlockReferralButton = styled(Button)<ButtonProps>(() => ({
   backgroundColor: '#4943da',
   marginTop: '10px',
-  padding: '8px',
+  padding: '9px',
   '&:hover': {
     backgroundColor: '#433ecc'
   },
@@ -11,7 +11,10 @@ const UnlockReferralButton = styled(Button)<ButtonProps>(() => ({
   width: '100%',
   boxShadow: 'none',
   textTransform: 'none',
-  borderRadius: '7px'
+  borderRadius: '7px',
+  fontWeight: '400',
+  fontFamily: 'sans-serif',
+  fontSize: '14px'
 }));
 
 export default UnlockReferralButton;

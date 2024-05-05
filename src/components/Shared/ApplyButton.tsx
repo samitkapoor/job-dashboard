@@ -9,7 +9,10 @@ const ApplyButton = styled(Button)<ButtonProps>(() => ({
   color: 'black',
   width: '100%',
   textTransform: 'none',
-  borderRadius: '7px'
+  borderRadius: '7px',
+  fontWeight: '600',
+  fontFamily: 'sans-serif',
+  fontSize: '15px'
 }));
 
 export default ApplyButton;
