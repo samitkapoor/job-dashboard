@@ -49,7 +49,7 @@ const jobsSlice = createSlice({
       let filtersApplied = false;
 
       for (let key of Object.keys(filters)) {
-        if (!filters[key] || filters[key] === '') continue;
+        if (!filters[key] || filters[key] === '' || (typeof filters[key] === 'object' && filters[key].length === 0)) continue;
         else filtersApplied = true;
         if (key === companyNameId) {
           filteredJobs = filteredJobs.filter((job) => job.companyName.toLowerCase().includes(filters[key].toLowerCase()));
