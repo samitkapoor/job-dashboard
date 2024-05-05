@@ -30,7 +30,7 @@ Here's a [video](https://github.com/samitkapoor/job-dashboard/blob/main/preview-
 Follow these steps to run the project locally on your device.
 
 1. Clone this repository on your local machine.
-2. Open the project in VS Code & Open terminal.
+2. Open the project in VS Code and open terminal.
 3. Enter the command `npm i` and hit Enter!
 4. Enter the command `npm run dev` and hit Enter again!
 5. Open your browser and visit `http://localhost:5173` and voila!
