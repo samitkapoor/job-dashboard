@@ -20,8 +20,8 @@ const jobsSlice = createSlice({
     setJobs: (state, action) => {
       return {
         ...state,
-        jobs: action.payload.data.jdList,
-        filteredJobs: action.payload.data.jdList,
+        jobs: action.payload.data.jdList || [], // * Empty array handles the case when API throw an error and no jobs are fetched
+        filteredJobs: action.payload.data.jdList || [],
         totalJobs: action.payload.data.totalCount
       };
     },
