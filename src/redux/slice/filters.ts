@@ -3,9 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FiltersState } from '../../types';
 
 const initialState: FiltersState = {
-  companyName: '',
-  minBasePay: 0,
-  experience: 0
+  companyName: undefined,
+  minBasePay: undefined,
+  experience: undefined,
+  location: undefined
 };
 
 const filtersSlice = createSlice({
@@ -20,9 +21,12 @@ const filtersSlice = createSlice({
     },
     setExperience: (state, action) => {
       return { ...state, experience: action.payload.data };
+    },
+    setLocation: (state, action) => {
+      return { ...state, location: action.payload.data };
     }
   }
 });
 
-export const { setCompanyName, setMinBasePay, setExperience } = filtersSlice.actions;
+export const { setCompanyName, setMinBasePay, setExperience, setLocation } = filtersSlice.actions;
 export default filtersSlice.reducer;

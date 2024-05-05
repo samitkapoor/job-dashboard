@@ -3,7 +3,7 @@ import { Autocomplete, Box, FormControl, TextField, debounce } from '@mui/materi
 import { useDispatch, useSelector } from 'react-redux';
 
 import debouncedFilter from './functions';
-import { companyNameId, experienceId, getExperienceOptions, minBasePayId, minBasePayOptions } from './constants';
+import { companyNameId, experienceId, getExperienceOptions, getLocationOptions, locationId, minBasePayId, minBasePayOptions } from './constants';
 import { State } from '../../types';
 import CustomTextField from '../Shared/CustomTextField';
 
@@ -12,6 +12,7 @@ const Filters = () => {
   const filters = useSelector((state: State) => state.filtersSlice);
   const [basePayOptions, setBasePayOptions] = useState(minBasePayOptions());
   const [experienceOptions, setExperienceOptions] = useState(getExperienceOptions());
+  const [locationOptions, setLocationOptions] = useState(getLocationOptions);
 
   const debouncedOnChange = debounce((e) => {
     debouncedFilter(e, dispatch, filters);
@@ -58,6 +59,28 @@ const Filters = () => {
                 setExperienceOptions(temp);
               }}
               label="Experience"
+              sx={{ width: '130px' }}
+            ></TextField>
+          )}
+        ></Autocomplete>
+      </FormControl>
+      <FormControl className="form-control">
+        <Autocomplete
+          id={locationId}
+          options={locationOptions}
+          onChange={(event, value) => {
+            if (!value) setLocationOptions(getLocationOptions);
+            debouncedOnChange({ target: { id: locationId, value: value?.value } });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              onChange={(e) => {
+                const { value } = e.target;
+                const temp = getLocationOptions.filter((option) => option.value.includes(value.toLowerCase()));
+                setLocationOptions(temp);
+              }}
+              label="Remote"
               sx={{ width: '130px' }}
             ></TextField>
           )}

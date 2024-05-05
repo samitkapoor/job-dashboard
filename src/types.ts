@@ -28,7 +28,8 @@ export type Job = {
 };
 
 export type FiltersState = {
-  companyName: string;
-  minBasePay: number;
-  experience: number;
+  companyName: string | undefined;
+  minBasePay: number | undefined;
+  experience: number | undefined;
+  location: string | undefined;
 };

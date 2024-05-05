@@ -2,6 +2,7 @@
 export const companyNameId = 'companyName';
 export const minBasePayId = 'minBasePay';
 export const experienceId = 'experience';
+export const locationId = 'location';
 
 // * OPTIONS
 export const minBasePayOptions = () => {
@@ -14,3 +15,7 @@ export const getExperienceOptions = () => {
   for (let i = 0; i <= 10; i++) arr.push({ label: `${i}`, value: i });
   return arr;
 };
+export const getLocationOptions = [
+  { label: 'Remote', value: 'remote' },
+  { label: 'In-office', value: 'in-office' }
+];

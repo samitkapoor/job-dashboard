@@ -1,8 +1,8 @@
 import { Dispatch, UnknownAction } from '@reduxjs/toolkit';
 
-import { companyNameId, experienceId, minBasePayId } from './constants';
+import { companyNameId, experienceId, locationId, minBasePayId } from './constants';
 import { filter, resetJobs } from '../../redux/slice/jobs';
-import { setCompanyName, setMinBasePay, setExperience } from '../../redux/slice/filters';
+import { setCompanyName, setMinBasePay, setExperience, setLocation } from '../../redux/slice/filters';
 import { FiltersState } from '../../types';
 
 const debouncedFilter = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, dispatch: Dispatch<UnknownAction>, filters: FiltersState) => {
@@ -17,6 +17,9 @@ const debouncedFilter = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaEle
       break;
     case experienceId:
       dispatch(setExperience({ data: value }));
+      break;
+    case locationId:
+      dispatch(setLocation({ data: value }));
       break;
     default:
       dispatch(resetJobs());
