@@ -34,6 +34,7 @@ const jobsSlice = createSlice({
         _state.hasMore = true;
         return _state;
       } else {
+        // * We have fetched all the jobs the API had to offer, so don't fetch more jobs
         _state.hasMore = false;
         return _state;
       }

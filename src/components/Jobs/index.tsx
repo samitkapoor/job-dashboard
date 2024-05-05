@@ -81,7 +81,7 @@ const Jobs = () => {
   ) : (
     // * Not loading and jobs are available
     <Box my="50px" display="flex" flexDirection="column" alignItems={'center'} justifyContent={'center'}>
-      <Grid container width="1000px" rowGap="20px">
+      <Grid container sx={{ width: { sx: '500px', md: '1000px' } }} rowGap="20px">
         {state.filteredJobs.map((job: Job, index: number) =>
           index + 1 === state.filteredJobs.length ? <JobCard refEle={lastJobEle} key={job.jdUid} job={job} /> : <JobCard key={job.jdUid} job={job} />
         )}

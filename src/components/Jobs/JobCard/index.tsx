@@ -20,7 +20,7 @@ const JobCard = (props: { job: Job; refEle?: (ele: Element) => void }) => {
   }
 
   return (
-    <Grid item xs={12} sm={4} md={4} lg={4} display="flex" alignItems="center" justifyContent="center">
+    <Grid item xs={12} sm={6} md={4} lg={4} display="flex" alignItems="center" justifyContent="center">
       <Box className="job-card-item" ref={refEle}>
         {/* // * Top most header of card, including Company logo, role, name, location */}
         <Box display="flex" width={'100%'} gap="3px" alignItems="start">
