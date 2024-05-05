@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { JobsState } from '../../types';
+import { companyNameId } from '../../components/Filters/constants';
 
 const initialState: JobsState = {
   jobs: [],
@@ -16,7 +17,12 @@ const jobsSlice = createSlice({
   initialState,
   reducers: {
     setJobs: (state, action) => {
-      return { ...state, jobs: action.payload.data.jdList, filteredJobs: action.payload.data.jdList, totalJobs: action.payload.data.totalCount };
+      return {
+        ...state,
+        jobs: action.payload.data.jdList,
+        filteredJobs: action.payload.data.jdList,
+        totalJobs: action.payload.data.totalCount
+      };
     },
     filterJobs: (state, action) => {
       return { ...state, filteredJobs: action.payload.data };
@@ -30,9 +36,30 @@ const jobsSlice = createSlice({
         _state.hasMore = false;
         return _state;
       }
+    },
+    // * Filters
+    filter: (state, action) => {
+      console.log(action.payload.filters);
+      const { filters } = action.payload;
+
+      let filteredJobs = state.jobs;
+      console.log({ filteredJobs });
+
+      for (let key of Object.keys(filters)) {
+        switch (key) {
+          case companyNameId:
+            filteredJobs = filteredJobs.filter((job) => job.companyName.toLowerCase().includes(filters[key].toLowerCase()));
+            break;
+        }
+      }
+      console.log(filteredJobs.slice());
+      return { ...state, filteredJobs };
+    },
+    resetJobs: (state) => {
+      return { ...state, filteredJobs: state.jobs };
     }
   }
 });
 
-export const { setJobs, filterJobs, addMoreJobs } = jobsSlice.actions;
+export const { setJobs, filterJobs, addMoreJobs, filter, resetJobs } = jobsSlice.actions;
 export default jobsSlice.reducer;

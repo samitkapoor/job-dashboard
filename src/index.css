@@ -27,6 +27,12 @@ a {
   font-size: 14px;
 }
 
+/* * Filters */
+.custom-input {
+  padding: 1px;
+}
+
+/* * Jobs */
 .column {
   display: flex;
   flex-direction: column;

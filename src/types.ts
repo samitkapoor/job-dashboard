@@ -1,3 +1,8 @@
+export type State = {
+  jobsSlice: JobsState;
+  filtersSlice: FiltersState;
+};
+
 export type JobsState = {
   filteredJobs: Array<Job>;
   jobs: Array<Job>;
@@ -20,4 +25,8 @@ export type Job = {
   jobRole: string;
   companyName: string;
   logoUrl: string;
+};
+
+export type FiltersState = {
+  companyName: string;
 };
