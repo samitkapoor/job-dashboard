@@ -1,6 +1,9 @@
 :root {
-  --white: '#FFFFFF';
-  --gray: '#e6e6e6';
+  --white: #ffffff;
+  --gray: #707070;
+  --lightGray: #b3b3b3;
+  --blue: #736fe3;
+  --teal: #55efc4;
 }
 
 * {
@@ -15,6 +18,13 @@ body {
 
 h3 {
   font-weight: 600;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+  margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .column {
@@ -48,19 +58,48 @@ h3 {
   color: var(--gray);
 }
 
-.layer {
-  position: absolute;
-  bottom: 0;
+.job-card-item {
+  max-width: 50px;
+  width: 100%;
+  border: 1px solid var(--lightGray);
 }
 
 .layer-box {
   width: 100%;
   height: 150px;
-  background: linear-gradient(to top, white, transparent);
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.end-layer {
+  height: 150px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.fade-layer {
+  position: absolute;
+  bottom: 0px;
+  height: 150px;
+  width: 100%;
+  background: linear-gradient(to top, var(--white) 10%, transparent);
+  z-index: 1;
+}
+
+.front-layer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
 }
 
 .apply-btn {
-  background-color: #55efc4;
+  background-color: var(--teal);
   width: 100%;
 }

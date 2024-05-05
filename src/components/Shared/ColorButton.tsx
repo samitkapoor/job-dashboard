@@ -1,13 +1,12 @@
 import { Button, ButtonProps, styled } from '@mui/material';
-import { purple } from '@mui/material/colors';
 
-const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
-  color: theme.palette.getContrastText(purple[500]),
+const ColorButton = styled(Button)<ButtonProps>(() => ({
   backgroundColor: '#55efc4',
   marginTop: 20,
   '&:hover': {
     backgroundColor: '#4fe2b9'
-  }
+  },
+  color: 'black'
 }));
 
 export default ColorButton;

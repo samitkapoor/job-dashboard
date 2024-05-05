@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FallingLines } from 'react-loader-spinner';
-import { Avatar, Box, Button, Grid, capitalize } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { fetchJobs } from './functions';
 import { setJobs } from '../../redux/slice/jobs';
 import { Job, JobsState } from '../../types';
-import { CURRENCY } from './constants';
-import ColorButton from '../Shared/ColorButton';
+import JobCard from './JobCard';
 
 const Jobs = () => {
   const [loading, setLoading] = useState(true);
@@ -34,63 +33,9 @@ const Jobs = () => {
   ) : (
     <Box>
       <Grid container justifyContent={'center'} columns={{ xs: 4, sm: 8, md: 12 }} rowGap={5} columnGap={4}>
-        {state.filteredJobs.map((job: Job) => {
-          console.log(job.salaryCurrencyCode);
-          let estimatedSalary = 'Estimated Salary: ';
-          if (job.minJdSalary && job.maxJdSalary) {
-            estimatedSalary += `${CURRENCY[job.salaryCurrencyCode]}${job.minJdSalary} - ${CURRENCY[job.salaryCurrencyCode]}${job.maxJdSalary}`;
-          } else if (job.minJdSalary) {
-            estimatedSalary += `${CURRENCY[job.salaryCurrencyCode]}${job.minJdSalary}`;
-          } else if (job.maxJdSalary) {
-            estimatedSalary += `${CURRENCY[job.salaryCurrencyCode]}${job.maxJdSalary}`;
-          }
-
-          return (
-            <Grid
-              item
-              key={job.jdUid}
-              xs={6}
-              md={3}
-              display="flex"
-              borderRadius={3}
-              flexDirection="column"
-              alignItems="start"
-              justifyContent="center"
-              p={2}
-              sx={{ border: '1px solid #b3b3b3' }}
-            >
-              <Box display="flex" width={'100%'} gap="3px" alignItems="start">
-                <Avatar sx={{ bgcolor: 'transparent', marginTop: '3px' }} variant="square">
-                  <img src={job.logoUrl} height="35px" />
-                </Avatar>
-                <Box display="flex" gap="2px" flexDirection="column" p={1}>
-                  <p className="short-text faded">{capitalize(job.companyName)}</p>
-                  <p className="short-text">{capitalize(job.jobRole)}</p>
-                  <p className="short-text">{capitalize(job.location)}</p>
-                </Box>
-              </Box>
-              <p className="short-text faded">{estimatedSalary}</p>
-              <Box my="7px"></Box>
-              <h3>About Company:</h3>
-              <p className="short-text extra-bold-text">About us</p>
-              <Box className="layer-box" height="150px" display="flex" flexDirection={'column'} alignItems={'center'}>
-                <Box height="150px" overflow="hidden">
-                  <p className="short-text">{job.jobDetailsFromCompany}</p>
-                </Box>
-                <Button disableTouchRipple className="layer text-btn">
-                  View job
-                </Button>
-              </Box>
-              <Box display="flex" flexDirection="column" gap="3px">
-                <p className="short-text faded">Minimum Experience</p>
-                <p className="short-text">{(job.minExp || 0) + ' years'}</p>
-              </Box>
-              <ColorButton className="apply-btn" variant="contained">
-                ⚡ Easy Apply
-              </ColorButton>
-            </Grid>
-          );
-        })}
+        {state.filteredJobs.map((job: Job) => (
+          <JobCard key={job.jdUid} job={job} />
+        ))}
       </Grid>
     </Box>
   );
