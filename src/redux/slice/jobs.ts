@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { JobsState } from '../../types';
-import { companyNameId, minBasePayId } from '../../components/Filters/constants';
+import { companyNameId, experienceId, minBasePayId } from '../../components/Filters/constants';
 
 const initialState: JobsState = {
   jobs: [],
@@ -50,6 +50,9 @@ const jobsSlice = createSlice({
             break;
           case minBasePayId:
             filteredJobs = filteredJobs.filter((job) => job.minJdSalary && job.minJdSalary >= filters[key]);
+            break;
+          case experienceId:
+            filteredJobs = filteredJobs.filter((job) => job.minExp && job.minExp <= filters[key]);
             break;
         }
       }

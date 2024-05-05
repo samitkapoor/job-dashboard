@@ -3,7 +3,7 @@ import { Autocomplete, Box, FormControl, TextField, debounce } from '@mui/materi
 import { useDispatch, useSelector } from 'react-redux';
 
 import debouncedFilter from './functions';
-import { companyNameId, minBasePayId, minBasePayOptions } from './constants';
+import { companyNameId, experienceId, getExperienceOptions, minBasePayId, minBasePayOptions } from './constants';
 import { State } from '../../types';
 import CustomTextField from '../Shared/CustomTextField';
 
@@ -11,6 +11,7 @@ const Filters = () => {
   const dispatch = useDispatch();
   const filters = useSelector((state: State) => state.filtersSlice);
   const [basePayOptions, setBasePayOptions] = useState(minBasePayOptions());
+  const [experienceOptions, setExperienceOptions] = useState(getExperienceOptions());
 
   const debouncedOnChange = debounce((e) => {
     debouncedFilter(e, dispatch, filters);
@@ -36,6 +37,28 @@ const Filters = () => {
               }}
               label="Minimum Base Pay Salary"
               sx={{ width: '240px' }}
+            ></TextField>
+          )}
+        ></Autocomplete>
+      </FormControl>
+      <FormControl className="form-control">
+        <Autocomplete
+          id={experienceId}
+          options={experienceOptions}
+          onChange={(event, value) => {
+            if (!value) setExperienceOptions(getExperienceOptions());
+            debouncedOnChange({ target: { id: experienceId, value: value?.value } });
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              onChange={(e) => {
+                const { value } = e.target;
+                const temp = getExperienceOptions().filter((option) => option.label.includes(value.toString()));
+                setExperienceOptions(temp);
+              }}
+              label="Experience"
+              sx={{ width: '130px' }}
             ></TextField>
           )}
         ></Autocomplete>

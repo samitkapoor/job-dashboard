@@ -4,7 +4,8 @@ import { FiltersState } from '../../types';
 
 const initialState: FiltersState = {
   companyName: '',
-  minBasePay: 0
+  minBasePay: 0,
+  experience: 0
 };
 
 const filtersSlice = createSlice({
@@ -16,9 +17,12 @@ const filtersSlice = createSlice({
     },
     setMinBasePay: (state, action) => {
       return { ...state, minBasePay: action.payload.data };
+    },
+    setExperience: (state, action) => {
+      return { ...state, experience: action.payload.data };
     }
   }
 });
 
-export const { setCompanyName, setMinBasePay } = filtersSlice.actions;
+export const { setCompanyName, setMinBasePay, setExperience } = filtersSlice.actions;
 export default filtersSlice.reducer;
