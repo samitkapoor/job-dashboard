@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { FiltersState } from '../../types';
 
 const initialState: FiltersState = {
-  companyName: ''
+  companyName: '',
+  minBasePay: 0
 };
 
 const filtersSlice = createSlice({
@@ -12,9 +13,12 @@ const filtersSlice = createSlice({
   reducers: {
     setCompanyName: (state, action) => {
       return { ...state, companyName: action.payload.data };
+    },
+    setMinBasePay: (state, action) => {
+      return { ...state, minBasePay: action.payload.data };
     }
   }
 });
 
-export const { setCompanyName } = filtersSlice.actions;
+export const { setCompanyName, setMinBasePay } = filtersSlice.actions;
 export default filtersSlice.reducer;

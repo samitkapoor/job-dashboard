@@ -30,7 +30,7 @@ const JobCard = (props: { job: Job; refEle?: (ele: Element) => void }) => {
             <p className="short-text">{capitalize(job.location)}</p>
           </Box>
         </Box>
-        <p className="short-text faded">{estimatedSalary}</p>
+        <p className="short-text faded">{estimatedSalary} LPA ✅</p>
         <Box my="7px"></Box>
         <h3>About Company:</h3>
         <p className="short-text extra-bold-text">About us</p>

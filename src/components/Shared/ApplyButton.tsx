@@ -11,7 +11,7 @@ const ApplyButton = styled(Button)<ButtonProps>(() => ({
   textTransform: 'none',
   borderRadius: '7px',
   fontWeight: '600',
-  fontFamily: 'sans-serif',
+  fontFamily: 'lexend',
   fontSize: '15px'
 }));
 

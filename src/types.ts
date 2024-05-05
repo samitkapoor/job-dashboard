@@ -29,4 +29,5 @@ export type Job = {
 
 export type FiltersState = {
   companyName: string;
+  minBasePay: number;
 };
