@@ -1,9 +1,11 @@
 # job-dashboard
 
-A User Interface of a job dashboard built using React!
+A Responsive User Interface of a job dashboard built using React!
 
 # Preview
 ![image](https://github.com/samitkapoor/job-dashboard/blob/main/preview.png)
+
+
 
 Here's a [video](https://github.com/samitkapoor/job-dashboard/blob/main/preview-video.mp4) of the project!
 
